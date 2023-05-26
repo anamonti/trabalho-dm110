@@ -1,6 +1,7 @@
 package br.inatel.dm110.api;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.PathParam;
@@ -25,7 +26,7 @@ public interface CustomerService {
 	@GET
 	@Path("/get")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<CustomerTO> getCustomers();
+	public List<CustomerTO> getCustomers();
 	
 	@POST
 	@Path("/update")

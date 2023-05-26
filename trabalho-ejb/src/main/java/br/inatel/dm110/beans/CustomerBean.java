@@ -14,7 +14,7 @@ import br.inatel.dm110.entities.Customer;
 @Stateless 
 @Remote(CustomerRemote.class)
 @Local(CustomerLocal.class)
-public class CustomerBean implements CustomerLocal, CustomerRemote{
+public class CustomerBean implements CustomerLocal, CustomerRemote {
 
 	@EJB
 	private CUSTOMERDAO dao;
