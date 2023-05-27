@@ -10,7 +10,7 @@ import br.inatel.dm110.entities.Customer;
 
 @Stateless
 public class CustomerDAO {
-	@PersistenceContext(unitName = "customer_pu")
+	@PersistenceContext(unitName = "trabalho_dm110_pu")
 	private EntityManager em;
 	
 	public void addCustomer(Customer customer) {

@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 
 import br.inatel.dm110.interfaces.CustomerRegisterLocal;
 import br.inatel.dm110.interfaces.CustomerRegisterRemote;
+import br.inatel.dm110.sender.CustomerQueueSender;
 import br.inatel.dm110.api.CustomerTO;
 import br.inatel.dm110.dao.CustomerDAO;
 import br.inatel.dm110.entities.Customer;
@@ -20,6 +21,9 @@ import br.inatel.dm110.entities.Customer;
 public class CustomerBean implements CustomerRegisterLocal, CustomerRegisterRemote {
 	@EJB
 	private CustomerDAO dao;
+	
+	@EJB
+    private CustomerQueueSender queueSender;
 
 	@Override
 	public CustomerTO addCustomer(CustomerTO customer) {
@@ -33,7 +37,7 @@ public class CustomerBean implements CustomerRegisterLocal, CustomerRegisterRemo
 
 		dao.addCustomer(ct);
 		customer.setId(customer.getId());
-		
+		queueSender.sendCustomerCreatedMessage(ct);
 		return customer;
 	}
 
@@ -68,7 +72,7 @@ public class CustomerBean implements CustomerRegisterLocal, CustomerRegisterRemo
 				customer.getCep(),
 				customer.getCpf());
 		Customer updatedCustomer = dao.updateCustomer(ct);
-
+		queueSender.sendCustomerUpdatedMessage(updatedCustomer);
 		return getCustomerTO(updatedCustomer);
 
 	}
