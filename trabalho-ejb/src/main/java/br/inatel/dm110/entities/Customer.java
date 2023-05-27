@@ -1,11 +1,17 @@
 package br.inatel.dm110.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "customer")
 public class Customer {
-	public Customer() {}
-	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 	private String cpf;
 	private String name;
 	private String birthDate;
@@ -13,6 +19,25 @@ public class Customer {
 	private String email;
 	private String cep;
 	
+	public Customer() {}
+	
+	public Customer(String cpf, String name, String birthDate, String gender, String email, String cep) {
+		this.cpf = cpf;
+		this.name = name;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.email = email;
+		this.cep = cep;
+	}
+
+	public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
 	public String getCpf() {
 		return cpf;
 	}

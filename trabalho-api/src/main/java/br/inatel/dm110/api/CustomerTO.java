@@ -2,13 +2,23 @@ package br.inatel.dm110.api;
 
 import java.io.Serializable;
 
-public class CustomerTO implements Serializable{
+public class CustomerTO implements Serializable {
+	private static final long serialVersionUID = 58334600358300675L;
+	private int id;
 	private String cpf;
 	private String name;
 	private String birthDate;
 	private String gender;
 	private String email;
 	private String cep;
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getCpf() {
 		return cpf;
